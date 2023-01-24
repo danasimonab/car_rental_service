@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>All users</title>
+    <style type="text/css">
+        table, th, td {
+        border:1px solid black;
+}
+</style>
+</head>
+<body>
+
+<table id="userTable">
+    <tr>
+        <th>User Id</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>UserName</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Country</th>
+        <th>License Number</th>
+        <th>Status</th>
+    </tr>
+</table>
+<script type="text/javascript">
+
+    function run() {
+
+&lt;!--        // Creating Our XMLHttpRequest object-->
+        var xhr = new XMLHttpRequest();
+
+&lt;!--        // Making our connection-->
+        var url = 'http://localhost:8080/user/find';
+        xhr.open("GET", url, true);
+
+&lt;!--        // function execute after request is successful-->
+        xhr.onreadystatechange = function () {
+            if (this.readyState == 4 &amp;&amp; this.status == 200) {
+&lt;!--               console.log(this.responseText);-->
+                var usersList = JSON.parse(this.responseText);
+                var table = document.getElementById("userTable");
+                for(var i = 1; i&lt;usersList.length; i++){
+                    var row = table.insertRow(i);
+
+                    Object.entries(usersList[i]).forEach(([, value], index) => {
+                           console.log(`${index}: ${value}`);
+                           var cell = row.insertCell(`${index}`);
+                           cell.innerHTML = `${value}`;
+                    });
+
+                }
+
+            }
+        }
+        // Sending our request
+        xhr.send();
+    }
+    run();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="container" style="margin-top: 70px;">
+  <!----------------------------- SHOW USER --------------------------->
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Username</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Country</th>
+      <th>License Number</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor=" let user of users" [class.selected]="user === selectedUser"  data-toggle="modal" data-target="#exampleModalCenter" (click)="onSelect(user)">
+      <td>{{user.email}} </td>
+      <td>{{user.password}} </td>
+      <td>{{user.username}}</td>
+      <td>{{user.firstname}} </td>
+      <td>{{user.lastname}} </td>
+      <td>{{user.country}} </td>
+      <td>{{user.license_number}}</td>
+      <td>{{user.status}}</td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+
+          <app-user-details [user] = "selectedUser"></app-user-details>
+
+          <app-user-update [user] = "user"></app-user-update>
+
+          <button type="button" class="btn btn-outline-secondary"  data-bs-toggle="tooltip" data-bs-html="true" title="Delete" (click)="deleteUserById(user.user_id)">
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--------------------------------------------------------->
+  <!-------------------------- ADD USER --------------------->
+
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary" type="button" (click)="addUser()">Add User</button>
+  </div>
+
+  <app-add [display]="displayTable"></app-add>
+
+  <!--------------------------------------------------------->
+</div>
+
+

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Add user</title>
+</head>
+
+<body>
+
+<fieldset>
+    <legend>Please Enter Your Info</legend>
+    <label for="email">Email</label> <br/> <input type="text" id="email" />
+    <br />
+    <label for="password">Password</label> <br/> <input type="password" id="password" />
+    <br />
+    <label for="username">Username</label> <br/> <input type="text" id="username" />
+    <br />
+    <label for="firstname">Firstname</label> <br/> <input type="text" id="firstname" />
+    <br />
+    <label for="lastname">Lastname</label> <br/> <input type="text" id="lastname" />
+    <br />
+    <label for="country">Country</label> <br/> <input type="text" id="country" />
+    <br />
+    <label for="licenseNumber">License number</label> <br/> <input type="text" id="licenseNumber" />
+    <br />
+    <label for="status">Status</label> <br/> <input type="text" id="status" />
+    <br /> <br /> <br />
+    <button type="button" onclick="saveUser()">
+        Send
+    </button>
+</fieldset>
+<script type="text/javascript">
+ function saveUser() {
+        let postObj = {
+            "email": document.getElementById("email").value,
+            "password": document.getElementById("password").value,
+            "username": document.getElementById("username").value,
+            "firstname": document.getElementById("firstname").value,
+            "lastname": document.getElementById("lastname").value,
+            "country": document.getElementById("country").value,
+            "license_number": document.getElementById("licenseNumber").value,
+            "status": document.getElementById("status").value
+        }
+
+        var xhr = new XMLHttpRequest();
+        var url = "http://localhost:8080/user/add";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+
+        };
+        var data = JSON.stringify(postObj);
+        xhr.send(data);
+
+        xhr.onload = function () {
+            if(xhr.status == 200) {
+                console.log("User successfully saved!");
+                alert('User successfully saved!');
+             }
+        }
+ }
+</script>
+</body>
+</html>

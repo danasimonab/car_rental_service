@@ -1,0 +1,61 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit user details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()"  class="addForm needs-validation" novalidate>
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping" formControlName="email" >
+      </div>
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping" formControlName="password" >
+      </div>
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" formControlName="username" >
+      </div>
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" formControlName="firstname" >
+      </div>
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" formControlName="lastname" >
+      </div>
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Country" aria-label="Country" aria-describedby="addon-wrapping" formControlName="country" >
+      </div>
+
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="License Number" aria-label="License Number" aria-describedby="addon-wrapping" formControlName="license_number" >
+      </div>
+
+
+      <div class="addEntry input-group flex-nowrap">
+        <input type="text" class="form-control" placeholder="Status" aria-label="Status" aria-describedby="addon-wrapping" formControlName="status" >
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary" type="submit"  (click)="d('Cross click')">Save</button>
+      </div>
+
+    </form>
+
+
+  </div>
+</ng-template>
+
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-html="true" title="Edit" (click)="open(content)">
+  <i class="fa fa-pencil-square-o"></i>
+</button>
